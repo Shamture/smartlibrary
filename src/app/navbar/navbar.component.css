@@ -1,0 +1,19 @@
+.navbar{
+    border-radius:0 !important;
+    }
+    a {
+        color: #f2f2f2;
+    }
+    a:hover {
+        color: rgb(31, 101, 231);
+        text-decoration: underline;
+    }
+    .nav > li > a:focus, 
+    .nav > li > a:hover 
+    {
+        text-decoration: none;
+        background-color: transparent;
+    }
+    .navbar-right{margin: 0 !important}
+
+    

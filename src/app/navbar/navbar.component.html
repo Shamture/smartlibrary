@@ -1,0 +1,27 @@
+<div>
+  <nav class="navbar navbar-dark" style="background-color: #292a2b;">
+    <div class='container-fluid'>
+      <!-- <a class='navbar-brand' style="color: rgb(255, 255, 255)">{{pageTitle}}</a> -->
+      <ul class='nav navbar-nav'>
+        <li>
+          <a [routerLink]="['/']">Home</a>
+        </li>
+        <li>
+          <a [routerLink]="['/books']">Book List</a>
+        </li>
+        <li>
+          <a [routerLink]="['/mybooks']">My Books</a>
+        </li>
+        <li>
+          <a [routerLink]="['/bookEdit/0']">Add Book</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <a  class='navbar-brand' style="color: lightgreen">{{userSVC.loggedInUser}}</a>
+          <li><a [routerLink]="['/signup']"><span class="fa fa-sign-in"></span> Sign Up</a></li>
+          <li><a [routerLink]="['/login']"><span class="fa fa-sign-in"></span> Login</a></li>
+          <li><a (click)="logout()"><span class="fa fa-sign-out"></span> Sign Out</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>

@@ -1,0 +1,35 @@
+.container {
+  position: relative;
+  background: #cccccccf;
+  padding: 10px;
+  top: 180px;
+  border-radius: 5px;
+}
+
+.library-be-together-section {
+  position: relative;
+  height: 500px;
+  width: auto;
+  background-color: #f3f3f3;
+  background: url('/assets/images/slide01.jpg') center 0% no-repeat;
+  background-size: cover;
+}
+
+.logo-font {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  line-height: 1;
+  color: #767777;
+  font-weight: 500;
+}
+
+.library-slogan {
+  font-size: 60px;
+  padding-top: 160px;
+  text-align: center;
+}
+
+.library-sub-slogan {
+  font-size: 21px;
+  padding-top: 24px;
+  text-align: center;
+}
