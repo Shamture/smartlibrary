@@ -44,12 +44,24 @@
       <mat-cell *matCellDef="let books"> {{books.author}} </mat-cell>
     </ng-container>
 
+    <!-- issuedDateTime Column -->
+    <ng-container matColumnDef="issuedDateTime">
+      <mat-header-cell *matHeaderCellDef> Issed Date </mat-header-cell>
+      <mat-cell *matCellDef="let books"> {{books.issuedDateTime | date: 'dd/MM/yyyy'}} </mat-cell>
+    </ng-container>
+
+    <!-- renewDateTime Column -->
+    <ng-container matColumnDef="renewDateTime">
+      <mat-header-cell *matHeaderCellDef> Renew Date </mat-header-cell>
+      <mat-cell *matCellDef="let books"> {{books.renewDateTime | date: 'dd/MM/yyyy'}} </mat-cell>
+    </ng-container>
+
 
     <!-- issued Column -->
-    <ng-container matColumnDef="issued">
-      <mat-header-cell *matHeaderCellDef> Issued </mat-header-cell>
+    <ng-container matColumnDef="return">
+      <mat-header-cell *matHeaderCellDef> Return </mat-header-cell>
       <mat-cell *matCellDef="let books">
-        <button *ngIf="user.getUserLoggedIn() && !books.issued" mat-raised-button color="primary" (click)="issueBook(books)">Issue</button>
+        <button *ngIf="books.issued" mat-raised-button color="primary" (click)="returnBook(books)">Return</button>
       </mat-cell>
     </ng-container>
 

@@ -6,21 +6,21 @@
         <li>
           <a [routerLink]="['/']">Home</a>
         </li>
-        <li>
-          <a [routerLink]="['/books']">Book List</a>
+        <li *ngIf="user.getUserLoggedIn() || user.getUserName() == 'admin'">
+          <a [routerLink]="['/books']">Books</a>
         </li>
-        <li>
+        <li *ngIf="user.getUserLoggedIn()">
           <a [routerLink]="['/mybooks']">My Books</a>
         </li>
-        <li>
+        <li *ngIf="user.getUserName() == 'admin'">
           <a [routerLink]="['/bookEdit/0']">Add Book</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-          <a  class='navbar-brand' style="color: lightgreen">{{userSVC.loggedInUser}}</a>
-          <li><a [routerLink]="['/signup']"><span class="fa fa-sign-in"></span> Sign Up</a></li>
-          <li><a [routerLink]="['/login']"><span class="fa fa-sign-in"></span> Login</a></li>
-          <li><a (click)="logout()"><span class="fa fa-sign-out"></span> Sign Out</a></li>
+          <a  class='navbar-brand' style="color: rgb(255, 255, 255)">{{user.getUserName()}}</a>
+          <li *ngIf="!user.getUserLoggedIn()"><a [routerLink]="['/signup']"><span class="fa fa-sign-in"></span> Sign Up</a></li>
+          <li *ngIf="!user.getUserLoggedIn()"><a [routerLink]="['/login']"><span class="fa fa-sign-in"></span> Login</a></li>
+          <li *ngIf="user.getUserLoggedIn()"><a (click)="logout()"><span class="fa fa-sign-out"></span> Sign Out</a></li>
       </ul>
     </div>
   </nav>

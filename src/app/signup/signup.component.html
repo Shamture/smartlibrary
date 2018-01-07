@@ -1,16 +1,18 @@
 <div id="login-box">
-    <div class="left">
-      <h1>Sign up</h1>
-      
-      <input type="text" name="username" placeholder="Username" />
-      <input type="text" name="email" placeholder="E-mail" />
-      <input type="password" name="password" placeholder="Password" />
-      <input type="password" name="password2" placeholder="Retype password" />
-      
-      <input type="submit" name="signup_submit" value="Sign me up" />
-    </div>
-    
-    <div class="right">
-      <span class="loginwith">You're never alone when you're reading a book.</span>
-    </div>
+  <div class="left">
+    <h1>Sign up</h1>
+      <mat-form-field class="signup-full-width">
+        <input matInput [(ngModel)]="user.username" placeholder="Username" >
+      </mat-form-field>
+      <mat-form-field class="signup-full-width">
+        <input matInput placeholder="E-mail" [(ngModel)]="user.email">
+      </mat-form-field>
+      <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password"/>
+      <input type="password" name="retypepassword" placeholder="Retype password" [(ngModel)]="user.confirmPassword"/>
+      <input type="submit" name="signup_submit" value="Sign me up" (click)="saveValue()" />
   </div>
+  
+  <div class="right">
+    <span class="loginwith">You're never alone when you're reading a book.</span>
+  </div>
+</div>
