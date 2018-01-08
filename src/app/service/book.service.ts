@@ -29,14 +29,14 @@ export class BookService {
       );
   }
 
-  getBook(id: number): Observable<IBook> {
+  getBook(id: string): Observable<IBook> {
     const url = `${this.baseUrl}/${id}`;
     return this.http.get<IBook>(url)
       .catch(this.handleError);
   }
 
-  deleteBook(book: IBook | number): Observable<Response> {
-    const id = typeof book === 'number' ? book : book.id;
+  deleteBook(book: IBook | string): Observable<Response> {
+    const id = typeof book === 'string' ? book : book.id;
     const url = `${this.baseUrl}/${id}`;
 
     return this.http.delete<IBook>(url, httpOptions)
@@ -44,10 +44,11 @@ export class BookService {
   }
 
   saveBook(book: IBook): Observable<IBook> {
-    if (book.id === 0) {
-      return this.createBook(book);
-    }
     return this.updateBook(book);
+  }
+
+  addBook(book: IBook): Observable<IBook> {
+    return this.createBook(book);
   }
 
   private createBook(book: IBook): Observable<IBook> {

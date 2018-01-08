@@ -1,35 +1,38 @@
-<mat-card class="edit-card">
+<mat-card class="add-card">
   <mat-card-header>
-    <mat-card-title>Edit Books</mat-card-title>
+    <mat-card-title>Add Books</mat-card-title>
   </mat-card-header>
   <br>
-  <form class="edit-form">
-    <mat-form-field class="edit-full-width">
+  <form class="add-form">
+    <mat-form-field class="add-full-width">
+      <input matInput placeholder="ISBN" [(ngModel)]="isbn" value="9283224175" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="searchbook(isbn)">Search ISBN</button>
+    <mat-spinner></mat-spinner>
+    <mat-form-field class="add-full-width">
       <input matInput placeholder="Author" value="{{book.author}}" [(ngModel)]="book.author" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
-    <mat-form-field class="edit-full-width">
+    <mat-form-field class="add-full-width">
       <input matInput placeholder="BookTitle" value="{{book.bookTitle}}" [(ngModel)]="book.bookTitle" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
-    <mat-form-field class="edit-full-width">
-      <textarea rows="10" cols="50" matInput placeholder="Description" value="{{book.description}}" [(ngModel)]="book.description" [ngModelOptions]="{standalone: true}"></textarea>
+    <mat-form-field class="add-full-width">
+      <textarea rows="10" cols="50" matInput placeholder="Description" value="{{book.description}}" [(ngModel)]="book.description"
+        [ngModelOptions]="{standalone: true}"></textarea>
     </mat-form-field>
-    <mat-form-field class="edit-full-width">
+    <mat-form-field class="add-full-width">
       <input matInput placeholder="Star Rating" value="{{book.starRating}}" [(ngModel)]="book.starRating" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
-    <mat-form-field class="edit-full-width">
+    <mat-form-field class="add-full-width">
       <input matInput placeholder="Cover" value="{{book.cover}}" [(ngModel)]="book.cover" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
-    <mat-form-field class="edit-full-width">
-      <input matInput placeholder="ISBN" value="{{book.isbn}}" [(ngModel)]="book.isbn" [ngModelOptions]="{standalone: true}">
-    </mat-form-field>
-    <mat-form-field class="edit-full-width">
+    <mat-form-field class="add-full-width">
       <input matInput placeholder="Genre" value="{{book.genre}}" [(ngModel)]="book.genre" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
-    <mat-form-field class="edit-full-width">
+    <mat-form-field class="add-full-width">
       <input matInput placeholder="Location" value="{{book.location}}" [(ngModel)]="book.location" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
     <div class="button-row">
-      <button mat-raised-button color="primary" (click)="saveBook(book)">Save</button>
+      <button mat-raised-button color="primary" (click)="addBook(book)">Save</button>
       <button mat-raised-button color="accent" (click)="cancel()">Cancel</button>
       <button mat-raised-button color="warn" (click)="delete(book)">Delete</button>
     </div>

@@ -13,7 +13,7 @@
           <a [routerLink]="['/mybooks']">My Books</a>
         </li>
         <li *ngIf="user.getUserName() == 'admin'">
-          <a [routerLink]="['/bookEdit/0']">Add Book</a>
+          <a [routerLink]="['/bookAdd']">Add Book</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -21,6 +21,7 @@
           <li *ngIf="!user.getUserLoggedIn()"><a [routerLink]="['/signup']"><span class="fa fa-sign-in"></span> Sign Up</a></li>
           <li *ngIf="!user.getUserLoggedIn()"><a [routerLink]="['/login']"><span class="fa fa-sign-in"></span> Login</a></li>
           <li *ngIf="user.getUserLoggedIn()"><a (click)="logout()"><span class="fa fa-sign-out"></span> Sign Out</a></li>
+          <li *ngIf="user.getUserLoggedIn()"><a (click)="logout()"><span class="fa fa-user sign-in-gf"></span></a></li>
       </ul>
     </div>
   </nav>

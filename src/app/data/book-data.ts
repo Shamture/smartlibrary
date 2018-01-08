@@ -5,7 +5,7 @@ export class BookData implements InMemoryDbService {
     createDb() {
         const books: IBook[] = [
             {
-                'id': 1,
+                'id': 't5rgAAAAMAAJ',
                 'bookTitle': 'The Android Developer cookbook',
                 'cover': 'assets/images/book1.jpeg',
                 'isbn': '9789332523876',
@@ -24,7 +24,7 @@ export class BookData implements InMemoryDbService {
 
             },
             {
-                'id': 2,
+                'id': 'i1lrYuczMUMC',
                 'bookTitle': 'Android Application Development',
                 'cover': 'assets/images/book2.jpeg',
                 'isbn': '9789351194095',
@@ -42,7 +42,7 @@ export class BookData implements InMemoryDbService {
                 'location': 'A-2'
             },
             {
-                'id': 3,
+                'id': 'Z00uAQAAIAAJ',
                 'bookTitle': 'Android App Development',
                 'cover': 'assets/images/book3.jpeg',
                 'isbn': '9788126557868',
@@ -60,7 +60,7 @@ export class BookData implements InMemoryDbService {
                 'location': 'B-1'
             },
             {
-                'id': 4,
+                'id': 'CpEvv0Wlm48C',
                 'bookTitle': 'Learning Android',
                 'cover': 'assets/images/book4.jpeg',
                 'isbn': '9788126557860',
@@ -78,7 +78,7 @@ export class BookData implements InMemoryDbService {
                 'location': 'B-2'
             },
             {
-                'id': 5,
+                'id': 'yf8-FycABEoC',
                 'bookTitle': 'Bulletproof Android',
                 'cover': 'assets/images/book5.jpeg',
                 'isbn': '9789332552326',
@@ -96,7 +96,7 @@ export class BookData implements InMemoryDbService {
                 'location': 'C-1'
             },
             {
-                'id': 6,
+                'id': 'Vtq4BgAAQBAJ',
                 'bookTitle': 'The Android Developer cookbook',
                 'cover': 'assets/images/book1.jpeg',
                 'isbn': '9789332523876',
@@ -115,7 +115,7 @@ export class BookData implements InMemoryDbService {
 
             },
             {
-                'id': 7,
+                'id': 'BEeoAwAAQBAJ',
                 'bookTitle': 'Android Application Development',
                 'cover': 'assets/images/book2.jpeg',
                 'isbn': '9789351194095',
@@ -133,7 +133,7 @@ export class BookData implements InMemoryDbService {
                 'location': 'A-2'
             },
             {
-                'id': 8,
+                'id': '0AfxBQAAQBAJ',
                 'bookTitle': 'Android App Development',
                 'cover': 'assets/images/book3.jpeg',
                 'isbn': '9788126557868',
@@ -151,7 +151,7 @@ export class BookData implements InMemoryDbService {
                 'location': 'B-1'
             },
             {
-                'id': 9,
+                'id': '3l7_p6EuMYoC',
                 'bookTitle': 'Learning Android',
                 'cover': 'assets/images/book4.jpeg',
                 'isbn': '9788126557860',
@@ -169,7 +169,7 @@ export class BookData implements InMemoryDbService {
                 'location': 'B-2'
             },
             {
-                'id': 10,
+                'id': 'yjx_AgAAQBAJ',
                 'bookTitle': 'Bulletproof Android',
                 'cover': 'assets/images/book5.jpeg',
                 'isbn': '9789332552326',

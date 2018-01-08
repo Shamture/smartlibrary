@@ -10,6 +10,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookGuardService } from './service/book-guard.service';
 import { MybooksComponent } from './mybooks/mybooks.component';
+import { BookEditComponent } from './book-edit/book-edit.component';
+import { BookAddComponent } from './book-add/book-add.component';
 
 export const ROUTES: Routes = [
     { path: '', canActivate: [AuthService], component: HomeComponent },
@@ -18,6 +20,8 @@ export const ROUTES: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'books', component: BookListComponent },
     { path: 'mybooks', component: MybooksComponent },
+    { path: 'bookEdit/:id', component: BookEditComponent },
+    { path: 'bookAdd', component: BookAddComponent },
     { path: 'book/:id', canActivate: [BookGuardService], component: BookDetailComponent},
     { path: '**', component: NotfoundComponent },
 

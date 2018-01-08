@@ -7,12 +7,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
-  selector: 'app-book-edit',
-  templateUrl: './book-edit.component.html',
-  styleUrls: ['./book-edit.component.css']
+  selector: 'app-book-add',
+  templateUrl: './book-add.component.html',
+  styleUrls: ['./book-add.component.css']
 })
-export class BookEditComponent implements OnInit {
 
+export class BookAddComponent implements OnInit {
   private sub: Subscription;
   errorMessage: string;
   book: IBook;
@@ -23,17 +23,14 @@ export class BookEditComponent implements OnInit {
     public snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    console.log('book edit ngOnInit');
-    this.sub = this.route.params.subscribe(
-      params => {
-        const id = params['id'];
-        this.getBook(id);
-      }
-    );
+    console.log('book Add ngOnInit');
+  }
 
-    // this.googlebook.searchBooks('isbn:9283224175')
-    // .subscribe(data => this.parseBookData(data),
-    // error => console.error('Error: ' + error));
+  searchbook(isbn): void {
+    console.log('searchbook >>>>>', isbn);
+    this.googlebook.searchBooks(isbn)
+    .subscribe(data => this.parseBookData(data),
+    error => console.error('Error: ' + error));
   }
 
   getBook(id: string): void {
@@ -92,5 +89,4 @@ export class BookEditComponent implements OnInit {
     booksData.issuedDateTime = '';
     booksData.location = '';
   }
-
 }

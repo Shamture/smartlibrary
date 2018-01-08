@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { ROUTES } from './app.routes';
 import { MatTableModule} from '@angular/material/table';
-import { MatFormFieldModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { Ng2Webstorage } from 'ngx-webstorage';
@@ -14,7 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
-
+import { LazyLoadImagesModule } from 'ngx-lazy-load-images';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -33,6 +34,8 @@ import { BookData } from './data/book-data';
 import { BookGuardService } from './service/book-guard.service';
 import { RatingModule } from 'ngx-rating';
 import { MybooksComponent } from './mybooks/mybooks.component';
+import { GoogleBookService } from './service/google-book.service';
+import { BookAddComponent } from './book-add/book-add.component';
 
 
 
@@ -49,6 +52,7 @@ import { MybooksComponent } from './mybooks/mybooks.component';
     NotfoundComponent,
     FooterComponent,
     MybooksComponent,
+    BookAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +66,9 @@ import { MybooksComponent } from './mybooks/mybooks.component';
     RatingModule,
     MatCardModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
     MatButtonModule,
+    LazyLoadImagesModule,
     HttpClientInMemoryWebApiModule.forRoot(BookData),
     BrowserAnimationsModule,
     RouterModule.forRoot(ROUTES, {
@@ -70,7 +76,7 @@ import { MybooksComponent } from './mybooks/mybooks.component';
       preloadingStrategy: PreloadAllModules
     }),
   ],
-  providers: [UserService, AuthService, BookService, BookGuardService],
+  providers: [UserService, AuthService, BookService, BookGuardService, GoogleBookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

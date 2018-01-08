@@ -65,6 +65,14 @@
       </mat-cell>
     </ng-container>
 
+    <!-- Renew Column -->
+    <ng-container matColumnDef="renew">
+      <mat-header-cell *matHeaderCellDef> Renew </mat-header-cell>
+      <mat-cell *matCellDef="let books">
+        <button *ngIf="books.issued" mat-raised-button color="primary" (click)="renewBook(books,books.renewDateTime)">Renew</button>
+      </mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>

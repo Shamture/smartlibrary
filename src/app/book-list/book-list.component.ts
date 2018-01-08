@@ -15,7 +15,7 @@ import {MatSnackBar} from '@angular/material';
 export class BookListComponent implements OnInit {
   bookList = null;
   dataSource = new MatTableDataSource<IBook>(this.bookList);
-  displayedColumns = ['id', 'bookTitle', 'cover', 'isbn', 'author', 'issued'];
+  displayedColumns = ['id', 'bookTitle', 'cover', 'isbn', 'author', 'issued', 'edit'];
   errorMessage: string;
   isLoggedIn: boolean;
   isAdmin = false;
@@ -56,6 +56,10 @@ export class BookListComponent implements OnInit {
         (error: any) => this.errorMessage = <any>error
         );
     }
+
+  editBook(books) {
+    this.router.navigate(['/bookEdit', books.id]);
+  }
 
   issued(books): void {
     this.snackBar.open('Issued succesfully', 'Return', {

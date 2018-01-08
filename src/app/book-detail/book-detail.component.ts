@@ -24,7 +24,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(
       params => {
-        const id = +params['id'];
+        const id = params['id'];
         this.getBook(id);
       });
   }
@@ -33,7 +33,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  getBook(id: number) {
+  getBook(id: string) {
     this.service.getBook(id).subscribe(
       book => this.book = book,
       error => this.errorMessage = <any>error);
