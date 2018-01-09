@@ -4,7 +4,7 @@ import { BookService } from '../service/book.service';
 import { Router } from '@angular/router';
 import { IBook } from '../service/IBook';
 import { UserService } from '../service/user.service';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-book-list',
@@ -12,6 +12,9 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./book-list.component.css']
 })
 
+/**
+ * Book List
+ */
 export class BookListComponent implements OnInit {
   bookList = null;
   dataSource = new MatTableDataSource<IBook>(this.bookList);
@@ -33,50 +36,65 @@ export class BookListComponent implements OnInit {
       }
       );
     this.isLoggedIn = this.user.getUserLoggedIn();
+    console.log('this.user.getUserName() >>>>', this.user.getUserName());
     if (this.isLoggedIn && this.user.getUserName() === 'admin') {
       this.isAdmin = true;
     }
     console.log('books >>>>', this.books);
   }
 
+  /**
+   * Search Filter
+   * @param filterValue
+   */
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
 
+  /**
+   * Issue Books
+   * @param books
+   */
   issueBook(books) {
-      books.userName = this.user.getUserName();
-      const now = new Date();
-      books.issuedDateTime = now;
-      books.issued = true;
-      books.renewDateTime = this.nextRenewalDate(now, 15);
-      this.service.updateBook(books)
-        .subscribe(() => this.issued(books),
-        (error: any) => this.errorMessage = <any>error
-        );
-    }
+    books.userName = this.user.getUserName();
+    const now = new Date();
+    books.issuedDateTime = now;
+    books.issued = true;
+    books.renewDateTime = this.nextRenewalDate(now, 15);
+    this.service.updateBook(books)
+      .subscribe(() => this.issued(books),
+      (error: any) => this.errorMessage = <any>error
+      );
+  }
 
+  /**
+   * Edit Book
+   * @param books
+   */
   editBook(books) {
     this.router.navigate(['/bookEdit', books.id]);
   }
 
+  /**
+   * Called on book issued
+   * @param books
+   */
   issued(books): void {
     this.snackBar.open('Issued succesfully', 'Return', {
       duration: 2000,
     });
   }
 
+  /**
+   * Renewal date
+   * @param theDate
+   * @param days
+   */
   nextRenewalDate(theDate, days) {
     return new Date(theDate.getTime() + days * 24 * 60 * 60 * 1000);
   }
 
 }
 
-// const ELEMENT_DATA: Element[] = [
-//   {position: 1, name: 'The Android Developer cookbook', cover: 'assets/images/book1.jpeg', isbn: '9789332523876', symbol: 'H'},
-//   {position: 2, name: 'Android Application Development', cover: 'assets/images/book2.jpeg', isbn: '9789351194095', symbol: 'He'},
-//   {position: 3, name: 'Android App Development', cover: 'assets/images/book3.jpeg', isbn: '9788126557868', symbol: 'Li'},
-//   {position: 4, name: 'Learning Android', cover: 'assets/images/book4.jpeg', isbn: '9788126557860', symbol: 'Li'},
-//   {position: 5, name: 'Bulletproof Android', cover: 'assets/images/book5.jpeg', isbn: '9789332552326', symbol: 'Li'},
-// ];

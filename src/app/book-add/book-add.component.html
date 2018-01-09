@@ -8,9 +8,11 @@
       <input matInput placeholder="ISBN" [(ngModel)]="isbn" value="9283224175" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="searchbook(isbn)">Search ISBN</button>
-    <mat-spinner></mat-spinner>
     <mat-form-field class="add-full-width">
-      <input matInput placeholder="Author" value="{{book.author}}" [(ngModel)]="book.author" [ngModelOptions]="{standalone: true}">
+      <input matInput placeholder="Id"  value="{{book.id}}" [(ngModel)]="book.id" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field class="add-full-width">
+      <input matInput placeholder="Author"  value="{{book.author}}" [(ngModel)]="book.author" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
     <mat-form-field class="add-full-width">
       <input matInput placeholder="BookTitle" value="{{book.bookTitle}}" [(ngModel)]="book.bookTitle" [ngModelOptions]="{standalone: true}">
@@ -34,7 +36,7 @@
     <div class="button-row">
       <button mat-raised-button color="primary" (click)="addBook(book)">Save</button>
       <button mat-raised-button color="accent" (click)="cancel()">Cancel</button>
-      <button mat-raised-button color="warn" (click)="delete(book)">Delete</button>
+      <!-- <button mat-raised-button color="warn" (click)="delete(book)">Delete</button> -->
     </div>
   </form>
 </mat-card>

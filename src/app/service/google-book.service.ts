@@ -9,11 +9,19 @@ export class GoogleBookService {
 
   constructor(private http: Http) { }
 
+  /**
+   * Search books
+   * @param queryTitle
+   */
   searchBooks(queryTitle: string): Observable<IBook[]> {
     return this.http.get(`${this.API_PATH}?q=isbn:${queryTitle}`)
       .map(res => res.json().items || []);
   }
 
+  /**
+   * Retrieve Books
+   * @param volumeId
+   */
   retrieveBook(volumeId: string): Observable<IBook> {
     return this.http.get(`${this.API_PATH}/${volumeId}`)
       .map(res => res.json());

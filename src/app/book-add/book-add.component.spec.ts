@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BookAddComponent } from './book-add.component';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('BookAddComponent', () => {
   let component: BookAddComponent;
@@ -8,7 +9,8 @@ describe('BookAddComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BookAddComponent ]
+      declarations: [ BookAddComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));

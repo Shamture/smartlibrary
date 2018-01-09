@@ -12,6 +12,9 @@ import { MatSnackBar } from '@angular/material';
   templateUrl: './mybooks.component.html',
   styleUrls: ['./mybooks.component.css']
 })
+/**
+ * MyBook component
+ */
 export class MybooksComponent implements OnInit {
   bookList = null;
   dataSource = new MatTableDataSource<IBook>(this.bookList);
@@ -41,6 +44,10 @@ export class MybooksComponent implements OnInit {
     console.log('books >>>>', this.books);
   }
 
+  /**
+   * Search Filter
+   * @param filterValue
+   */
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
@@ -51,6 +58,10 @@ export class MybooksComponent implements OnInit {
     }
   }
 
+  /**
+   * Return Books
+   * @param books
+   */
   returnBook(books) {
     books.userName = '';
     const now = new Date();
@@ -63,6 +74,11 @@ export class MybooksComponent implements OnInit {
       );
   }
 
+  /**
+   * Renew Books
+   * @param books
+   * @param renewDateTime
+   */
   renewBook(books, renewDateTime) {
     books.userName = this.user.getUserName();
     const now = new Date();
@@ -75,16 +91,29 @@ export class MybooksComponent implements OnInit {
       );
   }
 
+  /**
+   * Called on renewed
+   * @param books
+   */
   renewed(books): void {
     this.snackBar.open('Renewed succesfully', 'Return', {
       duration: 2000,
     });
   }
 
+  /**
+   * Renewal Date
+   * @param theDate
+   * @param days
+   */
   nextRenewalDate(theDate, days) {
     return new Date(theDate.getTime() + days * 24 * 60 * 60 * 1000);
   }
 
+  /**
+   * Called on returned
+   * @param books
+   */
   returned(books): void {
     this.snackBar.open('Returned succesfully', 'Issue', {
       duration: 2000,

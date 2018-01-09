@@ -12,10 +12,30 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./book-add.component.css']
 })
 
+/**
+ * Add books in admin mode
+ */
 export class BookAddComponent implements OnInit {
   private sub: Subscription;
   errorMessage: string;
-  book: IBook;
+  book: IBook = {
+    id: '',
+    bookTitle: '',
+    cover: '',
+    isbn: '',
+    author: '',
+    issued: false,
+    description: '',
+    starRating: 0,
+    qrcode: '',
+    renewDateTime: '',
+    userName: '',
+    issuedDateTime: '',
+    userId: '',
+    genre: '',
+    location: ''
+  };
+  isbn = '9283224175';
 
   constructor(private googlebook: GoogleBookService, private service: BookService,
     private route: ActivatedRoute,
@@ -26,13 +46,21 @@ export class BookAddComponent implements OnInit {
     console.log('book Add ngOnInit');
   }
 
+  /**
+   * Search book
+   * @param isbn
+   */
   searchbook(isbn): void {
     console.log('searchbook >>>>>', isbn);
     this.googlebook.searchBooks(isbn)
-    .subscribe(data => this.parseBookData(data),
-    error => console.error('Error: ' + error));
+      .subscribe(data => this.parseBookData(data),
+      error => console.error('Error: ' + error));
   }
 
+  /**
+   * Get books
+   * @param id
+   */
   getBook(id: string): void {
     this.service.getBook(id)
       .subscribe(
@@ -40,32 +68,48 @@ export class BookAddComponent implements OnInit {
       (error: any) => this.errorMessage = <any>error);
   }
 
-  saveBook(book): void {
-    console.log('author', this.book.author);
+  /**
+   * Add books
+   * @param book
+   */
+  addBook(book): void {
     this.service.saveBook(book)
       .subscribe(
-      () => this.onSaved(),
+      () => this.onAdded(),
       (error: any) => this.errorMessage = <any>error
       );
   }
 
-  onSaved(): void {
+  /**
+   * Called on book added
+   */
+  onAdded(): void {
     // Reset the form to clear the flags
     this.router.navigate(['/books']);
   }
 
+  /**
+   * Handle cancel button
+   */
   cancel(): void {
     this.router.navigate(['/books']);
   }
 
+  /**
+   * Delete Book
+   * @param book
+   */
   delete(book): void {
     this.service.deleteBook(book)
-    .subscribe(
+      .subscribe(
       () => this.onDeleted(),
       (error: any) => this.errorMessage = <any>error
       );
   }
 
+  /**
+   * Called on deleted
+   */
   onDeleted(): void {
     this.snackBar.open('Deleted succesfully ', this.book.id, {
       duration: 2000,
@@ -73,20 +117,23 @@ export class BookAddComponent implements OnInit {
     this.router.navigate(['/books']);
   }
 
+  /**
+   * Helper function to parse Book data from Google API
+   * @param book
+   */
   private parseBookData(book) {
-    let booksData: IBook;
-    booksData.id = book[0].id;
-    booksData.author = book[0].volumeInfo.authors;
-    booksData.bookTitle = book[0].volumeInfo.title;
-    booksData.description = book[0].volumeInfo.description;
-    booksData.starRating = book[0].volumeInfo.averageRating;
-    booksData.cover = book[0].volumeInfo.imageLinks === undefined ? '' : book[0].volumeInfo.imageLinks.thumbnail;
-    booksData.isbn = book[0].volumeInfo.industryIdentifiers;
-    booksData.genre = book[0].volumeInfo.categories;
-    booksData.renewDateTime = '';
-    booksData.userId = '';
-    booksData.userName = '';
-    booksData.issuedDateTime = '';
-    booksData.location = '';
+    this.book.id = book[0].id;
+    this.book.author = book[0].volumeInfo.authors;
+    this.book.bookTitle = book[0].volumeInfo.title;
+    this.book.description = book[0].volumeInfo.description;
+    this.book.starRating = book[0].volumeInfo.averageRating;
+    this.book.cover = book[0].volumeInfo.imageLinks === undefined ? '' : book[0].volumeInfo.imageLinks.thumbnail;
+    this.book.isbn = this.isbn;
+    this.book.genre = book[0].volumeInfo.categories;
+    this.book.renewDateTime = '';
+    this.book.userId = '';
+    this.book.userName = '';
+    this.book.issuedDateTime = '';
+    this.book.location = '';
   }
 }

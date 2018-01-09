@@ -5,7 +5,7 @@ import { ROUTES } from './app.routes';
 import { MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
-import { Ng2Webstorage } from 'ngx-webstorage';
+import { Ng2Webstorage} from 'ngx-webstorage';
 import { FormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -16,6 +16,8 @@ import {MatCardModule} from '@angular/material/card';
 import { LazyLoadImagesModule } from 'ngx-lazy-load-images';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SocialLoginModule } from 'angular4-social-login';
+import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from 'angular4-social-login';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -30,14 +32,27 @@ import { UserService } from './service/user.service';
 import { AuthService } from './service/auth.service';
 import { FooterComponent } from './footer/footer.component';
 import { BookService } from './service/book.service';
-import { BookData } from './data/book-data';
+import { BookData } from './data/book-mock';
 import { BookGuardService } from './service/book-guard.service';
 import { RatingModule } from 'ngx-rating';
 import { MybooksComponent } from './mybooks/mybooks.component';
 import { GoogleBookService } from './service/google-book.service';
 import { BookAddComponent } from './book-add/book-add.component';
 
+const config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('326260731439-f4sq27oa4r6u2bhjepk3k75f2vcapnqf.apps.googleusercontent.com')
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('160516178035418')
+  }
+]);
 
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -69,6 +84,7 @@ import { BookAddComponent } from './book-add/book-add.component';
     MatProgressSpinnerModule,
     MatButtonModule,
     LazyLoadImagesModule,
+    SocialLoginModule.initialize(config),
     HttpClientInMemoryWebApiModule.forRoot(BookData),
     BrowserAnimationsModule,
     RouterModule.forRoot(ROUTES, {
@@ -76,7 +92,16 @@ import { BookAddComponent } from './book-add/book-add.component';
       preloadingStrategy: PreloadAllModules
     }),
   ],
-  providers: [UserService, AuthService, BookService, BookGuardService, GoogleBookService],
+  providers: [
+    UserService,
+    AuthService,
+    BookService,
+    BookGuardService,
+    GoogleBookService,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

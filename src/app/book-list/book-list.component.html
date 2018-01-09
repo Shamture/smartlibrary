@@ -57,7 +57,7 @@
     <ng-container matColumnDef="edit">
       <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
       <mat-cell *matCellDef="let books">
-        <button *ngIf="user.getUserLoggedIn() && !books.issued" mat-raised-button color="primary" (click)="editBook(books)">Edit</button>
+        <button *ngIf="user.getUserLoggedIn() && !books.issued && isAdmin"  mat-raised-button color="primary" (click)="editBook(books)">Edit</button>
       </mat-cell>
     </ng-container>
 

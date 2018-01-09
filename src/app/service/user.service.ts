@@ -16,15 +16,26 @@ export class UserService {
     this.username = null;
   }
 
+  /**
+   * Set user login status
+   * @param status
+   * @param user
+   */
   setUserLoggedIn(status: boolean, user: string) {
     this.isUserLoggedIn = status;
     this.username = user;
   }
 
+  /**
+   * Get Login status
+   */
   getUserLoggedIn() {
     return this.isUserLoggedIn;
   }
 
+  /**
+   * Get login username
+   */
   getUserName() {
     return this.username;
   }

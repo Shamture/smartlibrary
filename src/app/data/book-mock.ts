@@ -1,6 +1,9 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { IBook } from '../service/IBook';
 
+/**
+ * Book Mock Data
+ */
 export class BookData implements InMemoryDbService {
     createDb() {
         const books: IBook[] = [

@@ -2,18 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'ngx-webstorage';
 import { UserService } from '../service/user.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'angular4-social-login';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+/**
+ * Nabvar component
+ */
 export class NavbarComponent implements OnInit {
   pageTitle = 'Smart Library';
   isAdmin: boolean;
   isLoggedIn: boolean;
 
-  constructor(private user: UserService, private storage: LocalStorageService, private router: Router) { }
+  constructor(private user: UserService,
+    private storage: LocalStorageService,
+    private router: Router,
+    private auth: AuthService) { }
 
   ngOnInit() {
     this.isLoggedIn = false;
@@ -24,6 +31,9 @@ export class NavbarComponent implements OnInit {
     console.log('isLoggedIn', this.isLoggedIn);
   }
 
+  /**
+   * Logout
+   */
   logout() {
     if (this.isAdmin) {
       this.storage.clear('isAdmin');
@@ -36,6 +46,8 @@ export class NavbarComponent implements OnInit {
       this.user.setUserLoggedIn(false, null);
       this.storage.store('isLoggedIn', false);
     }
+    this.auth.signOut();
+    this.user.setUserLoggedIn(false, null);
     this.router.navigate(['/home']);
   }
 }

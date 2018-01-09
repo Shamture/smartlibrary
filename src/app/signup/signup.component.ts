@@ -23,6 +23,9 @@ export class SignupComponent implements OnInit {
     };
   }
 
+  /**
+   * Save data
+   */
   saveValue() {
     this.storage.store('username', this.user.username);
     this.storage.store('email', this.user.email);

@@ -2,7 +2,7 @@
   <div class="left">
     <h1>Sign up</h1>
 
-    <input type="text" name="username" placeholder="Username" [(ngModel)]="login.username"/>
+    <input type="text" name="username" placeholder="Username" [(ngModel)]="login.username" />
     <input type="password" name="password" placeholder="Password" [(ngModel)]="login.password"/>
 
     <input type="submit" name="signup_submit" value="Login" (click)="verfiyLogin()"/>
@@ -12,9 +12,9 @@
     <span class="loginwith">Sign in with
       <br />social network</span>
 
-    <button class="social-signin facebook">Log in with facebook</button>
+    <button class="social-signin facebook" (click)="signInWithFB()">Log in with facebook</button>
     <!-- <button class="social-signin twitter">Log in with Twitter</button> -->
-    <button class="social-signin google">Log in with Google+</button>
+    <button class="social-signin google" (click)="signInWithGoogle()">Log in with Google+</button>
   </div>
   <div class="or">OR</div>
 </div>

@@ -11,6 +11,9 @@ import { MatSnackBar } from '@angular/material';
   templateUrl: './book-edit.component.html',
   styleUrls: ['./book-edit.component.css']
 })
+/**
+ * Book Edit
+ */
 export class BookEditComponent implements OnInit {
 
   private sub: Subscription;
@@ -30,12 +33,12 @@ export class BookEditComponent implements OnInit {
         this.getBook(id);
       }
     );
-
-    // this.googlebook.searchBooks('isbn:9283224175')
-    // .subscribe(data => this.parseBookData(data),
-    // error => console.error('Error: ' + error));
   }
 
+  /**
+   * Get Books
+   * @param id
+   */
   getBook(id: string): void {
     this.service.getBook(id)
       .subscribe(
@@ -43,6 +46,10 @@ export class BookEditComponent implements OnInit {
       (error: any) => this.errorMessage = <any>error);
   }
 
+  /**
+   * Save Book
+   * @param book
+   */
   saveBook(book): void {
     console.log('author', this.book.author);
     this.service.saveBook(book)
@@ -52,45 +59,40 @@ export class BookEditComponent implements OnInit {
       );
   }
 
+  /**
+   * Called on saved
+   */
   onSaved(): void {
     // Reset the form to clear the flags
     this.router.navigate(['/books']);
   }
 
+  /**
+   * Handle cancel button
+   */
   cancel(): void {
     this.router.navigate(['/books']);
   }
 
+  /**
+   * Delete Book
+   * @param book
+   */
   delete(book): void {
     this.service.deleteBook(book)
-    .subscribe(
+      .subscribe(
       () => this.onDeleted(),
       (error: any) => this.errorMessage = <any>error
       );
   }
 
+  /**
+   * Called on deleted
+   */
   onDeleted(): void {
     this.snackBar.open('Deleted succesfully ', this.book.id, {
       duration: 2000,
     });
     this.router.navigate(['/books']);
   }
-
-  private parseBookData(book) {
-    let booksData: IBook;
-    booksData.id = book[0].id;
-    booksData.author = book[0].volumeInfo.authors;
-    booksData.bookTitle = book[0].volumeInfo.title;
-    booksData.description = book[0].volumeInfo.description;
-    booksData.starRating = book[0].volumeInfo.averageRating;
-    booksData.cover = book[0].volumeInfo.imageLinks === undefined ? '' : book[0].volumeInfo.imageLinks.thumbnail;
-    booksData.isbn = book[0].volumeInfo.industryIdentifiers;
-    booksData.genre = book[0].volumeInfo.categories;
-    booksData.renewDateTime = '';
-    booksData.userId = '';
-    booksData.userName = '';
-    booksData.issuedDateTime = '';
-    booksData.location = '';
-  }
-
 }
