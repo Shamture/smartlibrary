@@ -10,7 +10,7 @@
     <!-- id Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-      <mat-cell *matCellDef="let books"> {{books.id}} </mat-cell>
+      <mat-cell *matCellDef="let books">{{ books.id }}</mat-cell>
     </ng-container>
 
     <!-- Booktitle Column -->
@@ -18,7 +18,7 @@
       <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
       <mat-cell *matCellDef="let books">
         <a [routerLink]="['/book', books.id]">
-          {{books.bookTitle}}
+          {{ books.bookTitle }}
         </a>
       </mat-cell>
     </ng-container>
@@ -27,7 +27,7 @@
     <ng-container matColumnDef="cover">
       <mat-header-cell *matHeaderCellDef> Cover </mat-header-cell>
       <mat-cell *matCellDef="let books">
-        <img class="cover" src="{{books.cover}} " />
+        <img class="cover" src="{{ books.cover }} " />
       </mat-cell>
     </ng-container>
 
@@ -35,13 +35,13 @@
     <!-- isbn Column -->
     <ng-container matColumnDef="isbn">
       <mat-header-cell *matHeaderCellDef> ISBN </mat-header-cell>
-      <mat-cell *matCellDef="let books"> {{books.isbn}} </mat-cell>
+      <mat-cell *matCellDef="let books"> {{ books.isbn }} </mat-cell>
     </ng-container>
 
     <!-- author Column -->
     <ng-container matColumnDef="author">
       <mat-header-cell *matHeaderCellDef> Author </mat-header-cell>
-      <mat-cell *matCellDef="let books"> {{books.author}} </mat-cell>
+      <mat-cell *matCellDef="let books"> {{ books.author }} </mat-cell>
     </ng-container>
 
 
@@ -57,7 +57,7 @@
     <ng-container matColumnDef="edit">
       <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
       <mat-cell *matCellDef="let books">
-        <button *ngIf="user.getUserLoggedIn() && !books.issued && isAdmin"  mat-raised-button color="primary" (click)="editBook(books)">Edit</button>
+        <button *ngIf="user.getUserLoggedIn() && !books.issued && isAdmin" mat-raised-button color="primary" (click)="editBook(books)">Edit</button>
       </mat-cell>
     </ng-container>
 
