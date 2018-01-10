@@ -1,11 +1,17 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { AuthService } from './auth.service';
+import { UserService } from './user.service';
+import {Router} from '@angular/router';
+import { NavigationExtras } from '@angular/router';
 
 describe('AuthService', () => {
+
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AuthService]
+      providers: [AuthService,
+        UserService,
+        {provide: Router, useClass: FakeRouter}]
     });
   });
 
@@ -13,3 +19,11 @@ describe('AuthService', () => {
     expect(service).toBeTruthy();
   }));
 });
+
+export class FakeRouter {
+  lastCommand: any[];
+  navigate(commands: any[], extras?: NavigationExtras) {
+    this.lastCommand = commands;
+    return commands;
+  }
+}

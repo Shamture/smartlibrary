@@ -1,11 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { BookGuardService } from './book-guard.service';
+import {Router} from '@angular/router';
+import { NavigationExtras } from '@angular/router';
+
 
 describe('BookGuardService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [BookGuardService]
+      providers: [BookGuardService,
+        {provide: Router, useClass: FakeRouter}]
     });
   });
 
@@ -13,3 +17,11 @@ describe('BookGuardService', () => {
     expect(service).toBeTruthy();
   }));
 });
+
+export class FakeRouter {
+  lastCommand: any[];
+  navigate(commands: any[], extras?: NavigationExtras) {
+    this.lastCommand = commands;
+    return commands;
+  }
+}
