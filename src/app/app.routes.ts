@@ -12,6 +12,7 @@ import { BookGuardService } from './service/book-guard.service';
 import { MybooksComponent } from './mybooks/mybooks.component';
 import { BookEditComponent } from './book-edit/book-edit.component';
 import { BookAddComponent } from './book-add/book-add.component';
+import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 
 export const ROUTES: Routes = [
     { path: '', canActivate: [AuthService], component: HomeComponent },
@@ -28,7 +29,14 @@ export const ROUTES: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(ROUTES)],
+    imports: [
+        RouterModule.forRoot(
+            ROUTES,
+            {
+                enableTracing: true,
+                preloadingStrategy: SelectivePreloadingStrategy,
+            }
+        )],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }
